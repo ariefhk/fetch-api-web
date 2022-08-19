@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script defer src="/jadwal.js"></script> -->
     <title>Document</title>
-</head>
-<body>
-    <script src="/jadwal.js"></script>
-</body>
+  </head>
+  <body>
+    <input type="text" id="nama" />
+    <button type="button" onclick="cariKota()">Cari Kota</button>
+    <p>Tanggal: <span class="tanggal">0</span></p>
+    <p>Subuh : <span class="subuh">1</span></p>
+    <p>Dzuhur : <span class="dzuhur">2</span></p>
+    <p>Ashar : <span class="ashar">3</span></p>
+    <p>Magrib : <span class="magrib">4</span></p>
+    <p>Isya : <span class="isya">5</span></p>
+    <input type="button" value="Gas jadwal" onclick="getJadwal()" />
+
+    <script>
+      const getJadwal = () => {
+        fetch("https://api.myquran.com/v1/sholat/jadwal/1205/2022/08/19")
+          .then((response) => response.json())
+          .then((data) => {
+            const tanggal = data.data.jadwal["tanggal"];
+            const subuh = data.data.jadwal["subuh"];
+            const dzuhur = data.data.jadwal["dzuhur"];
+            const ashar = data.data.jadwal["ashar"];
+            const magrib = data.data.jadwal["maghrib"];
+            const isya = data.data.jadwal["isya"];
+            document.querySelector(".tanggal").textContent = tanggal;
+            document.querySelector(".subuh").textContent = subuh;
+            document.querySelector(".dzuhur").textContent = dzuhur;
+            document.querySelector(".ashar").textContent = ashar;
+            document.querySelector(".magrib").textContent = magrib;
+            document.querySelector(".isya").textContent = isya;
+          });
+      };
+
+      const cariKota = ()=>{
+        
+      }
+    </script>
+  </body>
 </html>
