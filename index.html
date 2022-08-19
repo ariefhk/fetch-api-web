@@ -8,8 +8,9 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="text" id="nama" />
+    <input type="text" class="kota" />
     <button type="button" onclick="cariKota()">Cari Kota</button>
+    <p class="hasil"></p>
     <p>Tanggal: <span class="tanggal">0</span></p>
     <p>Subuh : <span class="subuh">1</span></p>
     <p>Dzuhur : <span class="dzuhur">2</span></p>
@@ -38,9 +39,24 @@
           });
       };
 
-      const cariKota = ()=>{
-        
-      }
+      const cariKota = () => {
+        const getData = [];
+        let getKota = document.querySelector(".kota").value;
+        fetch(`https://api.myquran.com/v1/sholat/kota/cari/bandung`)
+          .then((response) => response.json())
+          .then((data) => {
+            let data_length = data.data.length;
+            let datas = data.data;
+            for (var i = 0; i < data_length; i++) {
+              const para = document.createElement("button");
+              para.innerText = datas[i].id;
+              const newtt = document.createElement("id");
+              newtt.innerText
+              document.body.appendChild(para);
+              console.log(datas[i].id);
+            }
+          });
+      };
     </script>
   </body>
 </html>
